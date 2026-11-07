@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Minenhle 🎂</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --peach: #ffd9c0;
+    --rose: #ffb3c6;
+    --mint: #b5ead7;
+    --lavender: #d5c6f0;
+    --cream: #fffaf5;
+    --ink: #2b2b3a;
+    --soft-ink: #6b6b80;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ---------- SOFT FLOATING BACKGROUND ---------- */
+  .bg-blobs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  .blob1 { width: 500px; height: 500px; background: var(--rose); top: -100px; left: -100px; }
+  .blob2 { width: 450px; height: 450px; background: var(--mint); bottom: -100px; right: -100px; animation-delay: -5s; }
+  .blob3 { width: 400px; height: 400px; background: var(--lavender); top: 40%; left: 40%; animation-delay: -10s; }
+  @keyframes drift {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(40px, -30px) scale(1.1); }
+  }
+
+  /* ---------- OPENING / HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    overflow: hidden;
+  }
+
+  .cover-photo {
+    position: absolute;
+    inset: 0;
+    background-image: url('cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: var(--peach);
+    filter: brightness(1.05);
+    z-index: -2;
+  }
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 250, 245, 0.75) 0%,
+      rgba(255, 250, 245, 0.55) 40%,
+      rgba(255, 250, 245, 0.9) 100%
+    );
+    z-index: -1;
+  }
+
+  .profile-wrap {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--rose), var(--mint), var(--lavender));
+    box-shadow: 0 15px 40px rgba(255, 179, 198, 0.5);
+    margin-bottom: 25px;
+    animation: floatIn 1s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .profile-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    background: var(--peach);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ff7a9c, #a67cff, #4ecdc4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: floatIn 1s ease forwards 0.3s;
+  }
+
+  .hero .full-name {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--soft-ink);
+    margin-top: 12px;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    animation: floatIn 1s ease forwards 0.5s;
+  }
+
+  .hero .bday-tag {
+    margin-top: 25px;
+    padding: 10px 26px;
+    background: #fff;
+    border: 1px solid var(--rose);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #ff5e87;
+    box-shadow: 0 8px 25px rgba(255, 179, 198, 0.4);
+    opacity: 0;
+    animation: floatIn 1s ease forwards 0.7s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.75rem;
+    color: var(--soft-ink);
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
+    opacity: 0.8;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes floatIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff7a9c, #a67cff, #4ecdc4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--soft-ink);
+    font-size: 0.95rem;
+    margin-bottom: 45px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .media-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(180, 150, 200, 0.15);
+    aspect-ratio: 1 / 1;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .media-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 20px 45px rgba(255, 179, 198, 0.35);
+  }
+  .media-card img,
+  .media-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .media-card .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px;
+    background: linear-gradient(transparent, rgba(255,255,255,0.95));
+    font-size: 0.8rem;
+    color: var(--soft-ink);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Placeholder style */
+  .ph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 8px;
+    color: #c4b8d0;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(145deg, #fff5f8, #f0f8ff);
+  }
+  .ph .icon { font-size: 2.2rem; }
+
+  /* ---------- VIDEO FEATURE (Billie) ---------- */
+  .video-feature {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(166, 124, 255, 0.25);
+    background: #000;
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+  .video-feature video {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .video-feature .ph {
+    color: #9b8bb4;
+    background: linear-gradient(145deg, #f8f0ff, #eaf7ff);
+    font-size: 0.9rem;
+  }
+
+  /* ---------- SUNDOWNS ---------- */
+  .sundowns-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    background: #fff;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(255, 220, 130, 0.3);
+    border: 1px solid #ffe9a8;
+  }
+  .sundowns-img {
+    flex: 0 0 200px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fffbe8;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sundowns-img img { width: 100%; height: 100%; object-fit: contain; padding: 15px; }
+  .sundowns-img .ph { width: 100%; }
+  .sundowns-text { flex: 1 1 300px; }
+  .sundowns-text h3 {
+    color: #ffb400;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  .sundowns-text p { color: var(--soft-ink); line-height: 1.7; font-size: 0.95rem; }
+
+  /* ---------- MUSIC CARDS ---------- */
+  .music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .music-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(166, 124, 255, 0.18);
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+  .music-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(255, 179, 198, 0.35);
+  }
+  .album-art-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffe0ec, #e0f0ff);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .album-art-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .album-art-wrap .ph { width: 100%; height: 100%; }
+  .vinyl {
+    position: absolute;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #333 30%, #111 70%, #333 100%);
+    opacity: 0.85;
+    bottom: -30px; right: -30px;
+  }
+
+  .music-info { padding: 22px; text-align: center; }
+  .song-name { font-size: 1.4rem; font-weight: 800; color: var(--ink); }
+  .song-artist {
+    color: #a67cff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  .song-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: var(--soft-ink);
+  }
+  .song-meta span {
+    background: #fff5f8;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ffe0ec;
+  }
+  .music-info audio {
+    width: 100%;
+    margin-top: 12px;
+    filter: hue-rotate(-30deg) saturate(1.2);
+  }
+
+  /* ---------- WISH ---------- */
+  .wish-card {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 45px 35px;
+    background: linear-gradient(145deg, #fff9fb, #f5fffd);
+    border-radius: 28px;
+    border: 1px dashed #ffb3c6;
+    text-align: center;
+    line-height: 1.9;
+    color: var(--soft-ink);
+    font-size: 1rem;
+    box-shadow: 0 20px 50px rgba(255, 179, 198, 0.2);
+  }
+  .wish-card strong { color: #ff5e87; }
+  .wish-card .signature {
+    margin-top: 25px;
+    font-style: italic;
+    color: #a67cff;
+  }
+
+  .love-btn {
+    display: block;
+    margin: 40px auto 0;
+    padding: 16px 45px;
+    background: linear-gradient(135deg, #ffb3c6, #a67cff, #4ecdc4);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(166, 124, 255, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .love-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 179, 198, 0.6);
+  }
+
+  /* Floating hearts on click */
+  .heart-float {
+    position: fixed;
+    font-size: 1.6rem;
+    pointer-events: none;
+    animation: heartUp 3.2s ease-out forwards;
+    z-index: 999;
+  }
+  @keyframes heartUp {
+    to { transform: translateY(-320px) scale(0.4) rotate(20deg); opacity: 0; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    text-align: center;
+    padding: 50px 20px;
+    color: #b8b0c4;
+    font-size: 0.8rem;
+    border-top: 1px solid #f0e8f5;
+  }
+  footer .heart { color: #ff7a9c; }
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .profile-wrap { width: 140px; height: 140px; }
+    .sundowns-card { padding: 20px; }
+    .sundowns-img { flex: 0 0 140px; height: 140px; }
+    section { padding: 60px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Soft background blobs -->
+<div class="bg-blobs">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+</div>
+
+<!-- ================= HERO / OPENING ================= -->
+<header class="hero">
+  <div class="cover-photo"></div>
+  <div class="cover-overlay"></div>
+
+  <div class="profile-wrap">
+    <img src="profile.jpg" alt="Minenhle"
+         onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#ffb3c6,#b5ead7)'">
+  </div>
+
+  <h1>Happy Birthday, Minenhle!</h1>
+  <div class="full-name">Minenhle Philisiwe Mathebula</div>
+  <div class="bday-tag">08 • NOVEMBER • 2011</div>
+
+  <div class="scroll-hint">scroll down ↓</div>
+</header>
+
+<!-- ================= HER GALLERY ================= -->
+<section>
+  <h2 class="section-title reveal">Her Beautiful Moments ✨</h2>
+  <p class="section-sub reveal">A little gallery of the birthday girl</p>
+
+  <div class="gallery">
+    <div class="media-card reveal">
+      <img src="minenhle1.jpg" alt="Minenhle" onerror="this.outerHTML='<div class=ph><div class=icon>📷</div>Add minenhle1.jpg</div>'">
+      <div class="caption">Always glowing 💫</div>
+    </div>
+    <div class="media-card reveal">
+      <img src="minenhle2.jpg" alt="Minenhle" onerror="this.outerHTML='<div class=ph><div class=icon>📷</div>Add minenhle2.jpg</div>'">
+      <div class="caption">That smile 😊</div>
+    </div>
+    <div class="media-card reveal">
+      <img src="minenhle3.jpg" alt="Minenhle" onerror="this.outerHTML='<div class=ph><div class=icon>📷</div>Add minenhle3.jpg</div>'">
+      <div class="caption">Living her best life</div>
+    </div>
+    <div class="media-card reveal">
+      <img src="minenhle4.jpg" alt="Minenhle" onerror="this.outerHTML='<div class=ph><div class=icon>📷</div>Add minenhle4.jpg</div>'">
+      <div class="caption">Unstoppable 💪</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HER VIDEOS ================= -->
+<section>
+  <h2 class="section-title reveal">In Motion 🎬</h2>
+  <p class="section-sub reveal">Videos of her favourite moments</p>
+
+  <div class="gallery">
+    <div class="media-card reveal" style="aspect-ratio: 16/9; grid-column: 1 / -1;">
+      <video src="minenhle-video1.mp4" controls playsinline
+             onerror="this.outerHTML='<div class=ph><div class=icon>🎬</div>Add minenhle-video1.mp4</div>'"></video>
+      <div class="caption">Her moment 🎥</div>
+    </div>
+    <div class="media-card reveal" style="aspect-ratio: 16/9; grid-column: 1 / -1;">
+      <video src="minenhle-video2.mp4" controls playsinline
+             onerror="this.outerHTML='<div class=ph><div class=icon>🎬</div>Add minenhle-video2.mp4</div>'"></video>
+      <div class="caption">Another memory 💖</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BILLIE HAPPY BIRTHDAY VIDEO ================= -->
+<section>
+  <h2 class="section-title reveal">Billie Sings For You 🎤</h2>
+  <p class="section-sub reveal">Because your idol is singing just for you today</p>
+
+  <div class="video-feature reveal">
+    <video src="billie-happy-birthday.mp4" controls playsinline
+           onerror="this.outerHTML='<div class=ph><div class=icon>🎤</div>Add billie-happy-birthday.mp4</div>'"></video>
+  </div>
+</section>
+
+<!-- ================= MAMELODI SUNDOWNS ================= -->
+<section>
+  <h2 class="section-title reveal">Her Team 💛</h2>
+  <p class="section-sub reveal">Mamelodi Sundowns — the yellow nation</p>
+
+  <div class="sundowns-card reveal">
+    <div class="sundowns-img">
+      <img src="sundowns.jpg" alt="Mamelodi Sundowns"
+           onerror="this.outerHTML='<div class=ph><div class=icon>⚽</div>Add sundowns.jpg</div>'">
+    </div>
+    <div class="sundowns-text">
+      <h3>Mamelodi Sundowns FC</h3>
+      <p>
+        The Brazilians. The Yellow Nation. The heartbeat of South African football.
+        Minenhle bleeds yellow — the passion, the pride, the glory. 💛
+        <br><br>
+        <em>"The sky is the limit — but we're reaching higher."</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BILLIE EILISH SONGS ================= -->
+<section>
+  <h2 class="section-title reveal">Her Idol 🎧</h2>
+  <p class="section-sub reveal">Billie Eilish — the two songs she loves most</p>
+
+  <div class="music-grid">
+    <!-- LOVELY -->
+    <div class="music-card reveal">
+      <div class="album-art-wrap">
+        <img src="lovely.jpg" alt="Lovely album art"
+             onerror="this.outerHTML='<div class=ph><div class=icon>🎵</div>Add lovely.jpg</div>'">
+        <div class="vinyl"></div>
+      </div>
+      <div class="music-info">
+        <div class="song-name">Lovely</div>
+        <div class="song-artist">Billie Eilish &amp; Khalid</div>
+        <div class="song-meta">
+          <span>📅 19 April 2018</span>
+          <span>💿 Single</span>
+          <span>🎼 Pop / Alt</span>
+        </div>
+        <audio controls>
+          <source src="lovely.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <!-- OCEAN EYES -->
+    <div class="music-card reveal">
+      <div class="album-art-wrap">
+        <img src="oceaneyes.jpg" alt="Ocean Eyes album art"
+             onerror="this.outerHTML='<div class=ph><div class=icon>🌊</div>Add oceaneyes.jpg</div>'">
+        <div class="vinyl"></div>
+      </div>
+      <div class="music-info">
+        <div class="song-name">Ocean Eyes</div>
+        <div class="song-artist">Billie Eilish</div>
+        <div class="song-meta">
+          <span>📅 18 November 2015</span>
+          <span>💿 Single</span>
+          <span>🎼 Dream Pop</span>
+        </div>
+        <audio controls>
+          <source src="oceaneyes.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WISH ================= -->
+<section>
+  <h2 class="section-title reveal">A Birthday Wish 💌</h2>
+
+  <div class="wish-card reveal">
+    Dear <strong>Minenhle</strong>,<br><br>
+    Every year on the 8th of November, the world gets a little brighter — because you're in it.
+    From the girl born in 2011 to the incredible young lady you're becoming, you've always been
+    something special.
+    <br><br>
+    May this year bring you music that moves your soul, a team that keeps winning, and moments
+    that make you smile so much your cheeks hurt.
+    <br><br>
+    Keep singing, keep dreaming, keep shining. The world is yours. 💛
+    <br><br>
+    <strong>Happy Birthday, Minenhle! 🎂🎉</strong>
+    <div class="signature">— With all the love in the world</div>
+  </div>
+
+  <button class="love-btn" onclick="burstHearts()">Send Love 💚</button>
+</section>
+
+<footer>
+  Made with <span class="heart">♥</span> especially for Minenhle Philisiwe Mathebula • 08 November
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Heart burst
+  function burstHearts() {
+    const emojis = ['💚','💖','💛','🌸','✨','🎵','💫','🎂','🌊','⭐'];
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const h = document.createElement('div');
+        h.className = 'heart-float';
+        h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.top = (70 + Math.random() * 25) + 'vh';
+        h.style.fontSize = (1.2 + Math.random() * 1.2) + 'rem';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 3400);
+      }, i * 40);
+    }
+  }
+</script>
+
+</body>
+</html>
